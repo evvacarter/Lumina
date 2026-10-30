@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="on">
+    <div id="bg-a" class="bg-layer active"></div>
+    <div id="bg-b" class="bg-layer"></div>
+    <div class="dither"></div>
+    <main class="room">
+        <div class="lamp" id="lamp">
+            <svg id="bulb" viewbox="0 0 100 240">
+                <line x1="50" y1="0" x2="50" y2="120" class="cord" />
+                <rect x="44" y="118" width="12" height="18" rx="2" class="cap" />
+                <line x1="42" y1="124" x2="58" y2="124" class="ring" />
+                <line x1="42" y1="130" x2="58" y2="130" class="ring" />
+                <path class="glass" d="M 50 136 C 26 136 18 158 18 180 C 18 204 36 218 42 228 42 L 58 228 C 64 218 82 204 82 204 82 180 C 82 185 74 136 50 136 Z" />
+                <line x1="46" y1="228" x2="46" y2="185" class="pin" />
+                <line x1="54" y1="228" x2="54" y2="185" class="pin" />
+                <path class="filament" d="M 46 185 L 48 165 L 50 180 L 52 165 L 54 185" />
+            </svg>
+        </div>
+        <div class="panel">
+            <select id="themeSelect"></select>
+            <button id="powerBtn">
+                <span class="dot">intensity</span>
+            </button>
+        </div>
+    </main>
+
+</body>
+</html>

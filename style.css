@@ -1,0 +1,51 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --speed: 350ms;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #0b0c0e;
+    font-family: system-ui, -apple-system, sans-serif;
+    transition: background-color var(--speed) var(--ease-out);
+}
+.room {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.lamp {
+    width: 110px;
+    height: 250px;
+    cursor: pointer;
+}
+#bulb {
+    width: 100%;
+    height: 100%;
+}
+.cord {stroke: #222; stroke-width: 2.5;}
+.cap { fill: #3a352f;}
+.ring { stroke: #24211d; stroke-width: 1.5;}
+.pin { stroke: #555; stroke-width: 1; stroke-dasharray: 2; }
+
+.glass {
+    fill: rgba(255, 255, 255, 0.03);
+    stroke: rgba(255, 255, 255, 0.15);
+    stroke-width: 1.2;
+}
+.filament {
+    fill: none;
+    stroke: #333;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
