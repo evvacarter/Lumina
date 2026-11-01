@@ -6,6 +6,7 @@
 :root {
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --speed: 350ms;
+    --dim: 1;
 }
 body {
     width: 100vw;
@@ -25,17 +26,17 @@ body {
     transition: opacity var(--speed) var(--ease-out);
 }
 .bg-layer.active {
-    opacity: 1;
+    opacity: var(--dim);
 }
 .room {
-    position:relative;
+    position: relative;
     z-index: 2;
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .lamp {
     width: 110px;
@@ -66,6 +67,7 @@ body {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
+    opacity: var(--dim);
     transition: stroke var(--speed) var(--ease-out);
 }
 .panel {
@@ -117,4 +119,19 @@ body {
 }
 body.on .dot {
     background: #2ed573;
+}
+.dimmer {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    padding: 0 0.4rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+#dimSlider {
+    width: 70px;
+    accent-color: #cbd5e1;
+    cursor: pointer;
 }
