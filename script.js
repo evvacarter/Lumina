@@ -46,7 +46,11 @@ function init() {
         opt.textContent = THEMES[key].name;
         frag.appendChild(opt);
     }
-    
+    const cycleOpt = document.createElement("option");
+    cycleOpt.value = "cycle";
+    cycleOpt.textContent = "Dynamic Theme ( new )";
+    frag.appendChild(cycleOpt);
+
     const customOpt = document.createElement("option");
     customOpt.value = "custom";
     customOpt.textContent = "+ Create Your Own..";
@@ -58,7 +62,7 @@ function init() {
 }
 
 function getGradient(t) {
-    return `radial-gradient(circle at 50% 180px, ${t.core} 0%, ${t.mid} 32%, transparent 70%)`;
+    return `radial-gradient(circle at 50% 35%, ${t.core} 0%, ${t.mid} 45%,  ${t.bg} 100%)`;
 }
 
 function applyBulbStyle(theme){
@@ -85,6 +89,32 @@ function buildCustomTheme(hex) {
         wire: hex,
         tint: `rgba(${r}, ${g}, ${b}, 0.08)`
     };
+}
+
+const CYCLE_HEX = ["#f59e0b", "#ef4444", "#a855f7", "#3b82f6", "#10b981"]
+let cycleTimer = null;
+let cycleIdx = 0;
+
+function startCycle() {
+    stopCycle();
+    document.body.classList.add("cycling");
+
+    if (!isOn) togglePower();
+    renderLight(buildCustomTheme(CYCLE_HEX[cycleIdx]));
+
+    cycleTimer = setInterval(() => {
+        if (!isOn) return;
+        cycleIdx = (cycleIdx + 1) % CYCLE_HEX.length;
+        renderLight(buildCustomTheme(CYCLE_HEX[cycleIdx]));
+    }, 2400)
+}
+
+function stopCycle() {
+    if (cycleTimer) {
+        clearInterval(cycleTimer);
+        cycleTimer = null;
+    }
+    document.body.classList.remove("cycling");
 }
 
 function renderLight(theme) {
@@ -119,17 +149,20 @@ function togglePower(){
 
 select.addEventListener("change", (e) => {
     const val = e.target.value;
-    if(val === "custom") {
+    stopCycle();
+    if(val === "cycle") {
+        colorPicker.classList.remove("show");
+        startCycle();
+    } else if ( val === "custom") {
         colorPicker.classList.add("show");
-        renderLight(buildCustomTheme(colorPicker.value));
-        if (!isOn) togglePower();
-        else renderLight(currentTheme); 
+        if(!isOn) togglePower();
+        else renderLight(currentTheme);
         setTimeout(() => colorPicker.click(), 50);
     } else {
         colorPicker.classList.remove("show");
         const picked = THEMES[val];
         if (picked) renderLight(picked);
-    }   
+    }
 });
 
 let rafPending = false;

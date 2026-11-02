@@ -17,16 +17,18 @@ body {
     transition: background-color var(--speed) var(--ease-out);
 }
 .bg-layer {
-    position: absolute;
-    inset: 0;
+    position: fixed;
+    inset: -35%;
     opacity: 0;
     pointer-events: none;
-    contain: strict;
-    transform: translateZ(0);
+    transform-origin: 50% 35%;
+    transform:  scale(1) translateZ(0);
     transition: opacity var(--speed) var(--ease-out);
+    will-change: opacity, transform;
 }
 .bg-layer.active {
     opacity: var(--dim);
+    transform: scale(var(--dim)) translateZ(0);
 }
 .room {
     position: relative;
@@ -59,7 +61,7 @@ body {
 .glass {
     fill: rgba(255, 255, 255, 0.03);
     stroke: rgba(255, 255, 255, 0.15);
-    stroke-width: 1.2;
+    stroke-width: 1.5;
     transition: fill var(--speed) var(--ease-out), stroke var(--speed) var(--ease-out);
 }
 .filament {
@@ -191,4 +193,10 @@ body.on .dot {
 }
 #chain.dragging .chainEnd {
     transition: none;
+}
+body.cycling .bg-layer,
+body.cycling .glass,
+body.cycling .filament {
+    transition-duration: 2400ms !important;
+    transition-timing-function: linear !important;
 }
