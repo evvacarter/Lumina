@@ -39,8 +39,9 @@ body {
     justify-content: flex-start;
 }
 .lamp {
-    width: 110px;
-    height: 250px;
+    width: 190px;
+    height: 270px;
+    margin-left: 55px; 
     cursor: pointer;
     user-select: none;
     contain: layout paint;
@@ -71,7 +72,11 @@ body {
     transition: stroke var(--speed) var(--ease-out);
 }
 .panel {
-    margin-top: 2em;
+    position: fixed !important;
+    bottom: 25px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin : 0;
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -79,7 +84,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0.4rem 0.6rem;
     border-radius: 10px;
-    transform: translateZ(0);
+    z-index: 999;
 }
 #themeSelect {
     background: transparent;
@@ -134,4 +139,56 @@ body.on .dot {
     width: 70px;
     accent-color: #cbd5e1;
     cursor: pointer;
+}
+#colorPicker {
+    display: none;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+#colorPicker.show {
+    display: block;
+}
+#colorPicker::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+#coloePicker::-webkit-color-swatch{
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%
+}
+.arm {
+    stroke: #3a352f;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+}
+#chain {
+    cursor: grab;
+    touch-action: none;
+    transform: translateY(0px);
+    transition: transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#chain.dragging {
+    cursor: grabbing;
+    transition: none;
+}
+#chain:active {
+    cursor: grabbing;
+}
+.chain-cord {
+    stroke: #71717a;
+    stroke-width: 3;
+    stroke-dasharray: 0.1 6;
+    stroke-linecap: round;
+}
+.chain-knob {
+    fill: #cbd5e1;
+}
+#chain:hover .chain-knob {
+    fill: #e4e4e7;
+}
+#chain.dragging .chainEnd {
+    transition: none;
 }
