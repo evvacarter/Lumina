@@ -274,7 +274,20 @@ function drop() {
     if (pull >= 12 ) {
         togglePower();
         playSound(isOn);
+        swayBulb();
     }
 }
+
+const bulbBody = document.getElementById("bulbBody");
+function swayBulb() {
+    bulbBody.classList.remove("sway");
+    void bulbBody.getBoundingClientRect();
+    bulbBody.classList.add("sway");
+}
+bulbBody.addEventListener("animationend", () => {
+    bulbBody.classList.remove("sway");
+});
+
+bulbBody.addEventListener("click", swayBulb);
 chain.addEventListener("pointerup", drop);
 chain.addEventListener("pointercancel", drop);

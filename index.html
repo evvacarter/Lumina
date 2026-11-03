@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina</title>
+    <link rel="icon" type="image" href="favicon.svg " />
+    <title>Lumina - Intractive Lightings...</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="on">
@@ -13,6 +14,7 @@
     <main class="room">
         <div class="lamp" id="lamp">
             <svg id="bulb" viewBox="0 0 180 260">
+                <g id="bulbBody">
                 <line x1="50" y1="0" x2="50" y2="120" class="cord" />
                 <rect x="44" y="118" width="12" height="18" rx="2" class="cap" />
                 <line x1="42" y1="124" x2="58" y2="124" class="ring" />
@@ -21,12 +23,14 @@
                 <line x1="46" y1="228" x2="46" y2="185" class="pin" />
                 <line x1="54" y1="228" x2="54" y2="185" class="pin" />
                 <path class="filament" d="M 46 185 L 48 165 L 50 180 L 52 165 L 54 185" />
-
+                </g>
+                
                 <g id="chain">
                     <line id="chainLine" x1="135" y1="-60" x2="135" y2="186" class="chain-cord" />
                     <g id="chainEnd" >
                         <path d="M 130 185 L 140 185 L 142 198 C 142 201 128 201 128 198 Z" class="chain-knob" />
                         <circle cx="135" cy="190" r="18" fill="transparent" />
+                        <text id="pullHint" x="148" y="196" class="pull-hint">Pull</text>
                     </g>
                 </g>
             </svg>
