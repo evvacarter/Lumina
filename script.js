@@ -291,3 +291,30 @@ bulbBody.addEventListener("animationend", () => {
 bulbBody.addEventListener("click", swayBulb);
 chain.addEventListener("pointerup", drop);
 chain.addEventListener("pointercancel", drop);
+
+dimSlider.addEventListener("change", () => {
+    localStorage.setItem("lamp_dim", dimSlider.value);
+});
+select.addEventListener("change", () => {
+    localStorage.setItem("lamp_theme", select.value);
+});
+colorPicker.addEventListener("change", () => {
+    localStorage.setItem("lamp_custom_color", colorPicker.value);
+});
+function loadSavedState() {
+    const savedDim = localStorage.getItem("lamp_dim");
+    if (savedDim) {
+        dimSlider.value = savedDim;
+        document.documentElement.style.setProperty("--dim", savedDim);
+    }
+    const savedColor = localStorage.getItem("lamp_custom_color");
+    if (savedColor) {
+        colorPicker.value = savedColor;
+    }
+    const savedTheme = localStorage.getItem("lamp_theme");
+    if (savedTheme) {
+        select.value = savedTheme;
+        select.dispatchEvent(new Event("change"));
+    }
+}
+loadSavedState();
